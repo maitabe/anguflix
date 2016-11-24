@@ -1,7 +1,21 @@
 
-app.controller('movieCtrl', function($scope) {
-	$scope.movie = "Spirited Away";
+app.controller('movieCtrl', function($scope, movieService) {
+	// $scope.movie = "Spirited Away";
 
-	// $scope.movies = movieService;
+	//access all movies
+	$scope.movies = movieService.allMovies;
+
+	//print movies selected by user
+	$scope.userMovies = movieService.userMovies;
+
+
+	//invoke function
+	$scope.addUserMovies = function($index) {
+		movieService.addUserMovies($index);
+	};
+
+	// $scope.removeMovie = function($index) {
+	// 	movieService.removeMovie($index);
+	// };
 
 });

@@ -2,6 +2,14 @@ body {
 	font-family: 'Libre Franklin', sans-serif;
 }
 
+section h1{
+	padding-left: 66px;
+}
+
+section {
+    border-bottom: 1px solid #eee;
+}
+
 .page-header {
     padding-left: 66px;
 }
@@ -14,6 +22,18 @@ body {
   z-index: 20;
   box-shadow: 2px 2px 2px #B3B3B3;
   margin: 20px;
+  cursor: pointer;
+}
+
+/*.movie-collection:hover i{
+	display: inline !important;
+}*/
+
+i.fa.fa-times-circle-o {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    color: #818181;
 }
 
 .card {
@@ -125,6 +145,7 @@ body {
 .card-inner {
   display: table-cell;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .proimage {
@@ -134,3 +155,8 @@ body {
   max-height: 90%;
   max-width: 90%;
 }
+
+
+
+
+

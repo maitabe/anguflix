@@ -33,64 +33,76 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+  <section>
+  	<div class="page-header"></div>
+  	<h1>My Collection</h1>
+
+  	<div class="row" ng-controller="movieCtrl">
+      <div class="col-md-4" ng-repeat="movie in userMovies track by $index">
+      <i class="fa fa-times-circle-o fa-3x" aria-hidden="true" ng-click="removeMovie($item)"></i>
+        <div class="movie-container movie-collection" >
+          <div class="card item">
+            <div class="pricebox">
+              <p class="price"> ${{movie.price}} </p>
+            </div>
+            <div class="ratingbox">
+              <p class="rating"> {{movie.rating}} </p>
+            </div>
+            <div class="name-movie">
+              <p class="add-to-collection"> {{movie.name}}</p>
+            </div>
+            <div class="year-movie">
+              <p class="year-collection"> {{movie.year}}</p>
+            </div>
+            <div class="description-movie">
+              <p class="des-collection"> {{movie.description}}</p>
+            </div>
+	          <div class="card-inner">
+	              <img ng-src="{{movie.image}}" class="proimage">
+	          </div>
+	        </div>
+        </div>
+      </div>
+  	</div>
+  </section>
 
   <div class="page-header">
     <h1>MOVIES</h1>
   </div>
 
   <div class="container">
-  	<div class="row">
-      <div class="col-md-4">
-        <div class="movie-container">
+  	<div class="row" ng-controller="movieCtrl">
+      <div class="col-md-4" ng-repeat="movie in movies track by $index" ng-click="addUserMovies($index)">
+        <div class="movie-container" >
           <div class="card item">
             <div class="pricebox">
-              <p class="price"> $68 </p>
+              <p class="price"> ${{movie.price}} </p>
             </div>
             <div class="ratingbox">
-              <p class="rating"> 8.7 </p>
+              <p class="rating"> {{movie.rating}} </p>
             </div>
             <div class="name-movie">
-              <p class="add-to-collection"> spirited Away</p>
+              <p class="add-to-collection"> {{movie.name}}</p>
             </div>
             <div class="year-movie">
-              <p class="year-collection"> 2001</p>
+              <p class="year-collection"> {{movie.year}}</p>
             </div>
             <div class="description-movie">
-              <p class="des-collection"> During her family&quot;s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.</p>
+              <p class="des-collection"> {{movie.description}}</p>
             </div>
-
-
-
-            <!-- <div class="img-movie"> -->
-	            <div class="card-inner">
-	              <img src="http://t1.gstatic.com/images?q=tbn:ANd9GcS6MveoDoJOg9-wMvtHE4ak_-HDZeYS1egb9PwRcf8lhrtcppMc" class="proimage">
-	            </div>
+	          <div class="card-inner">
+	              <img ng-src="{{movie.image}}" class="proimage">
 	          </div>
-          <!-- </div> -->
+	        </div>
         </div>
       </div>
+  	</div>
 
+  	<div ng-controller="movieCtrl"> great movie: {{ movie }} </div>
   </div>
 
-<div ng-controller="movieCtrl"> great movie: {{ movie }} </div>
-  <!-- <div class="container">
-  	<div class="row">
-      <div class="col-md-4">
-        <div class="movie-collection">
-          <div class="card item" >
-            <div class="pricebox">
-              <p class="price"> $68 </p>
-            </div>
-            <div class="buybox">
-              <p class="add-to-cart"> ADD TO CART </p>
-            </div>
-            <div class="card-inner">
-              <img src="http://t1.gstatic.com/images?q=tbn:ANd9GcS6MveoDoJOg9-wMvtHE4ak_-HDZeYS1egb9PwRcf8lhrtcppMc" class="proimage">
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>  -->
+
+
 
 <script src="node_modules/angular/angular.min.js"></script>
 <script src="app.js"></script>
