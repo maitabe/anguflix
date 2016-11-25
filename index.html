@@ -34,12 +34,13 @@
     </div><!-- /.container-fluid -->
   </nav>
   <section>
-  	<div class="page-header"></div>
-  	<h1>My Collection</h1>
-
+  	<div class="page-header">
+	  	<h1>My Collection</h1>
+  	</div>
   	<div class="row" ng-controller="movieCtrl">
-      <div class="col-md-4" ng-repeat="movie in userMovies track by $index">
-      <i class="fa fa-times-circle-o fa-3x" aria-hidden="true" ng-click="removeMovie($item)"></i>
+      <div class="col-md-4" ng-repeat="movie in userMovies track by $index ">
+      <!-- <div class="col-md-4" ng-repeat="movie in userMovies | orderBy {{searchResults}} track by $index "> -->
+      <i class="fa fa-times-circle-o fa-3x" aria-hidden="true" ng-click="removeMovieMyCollection($index)"></i>
         <div class="movie-container movie-collection" >
           <div class="card item">
             <div class="pricebox">
@@ -70,9 +71,16 @@
     <h1>MOVIES</h1>
   </div>
 
+  <div class="box">
+  <div class="container-1">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <input type="search" id="search" placeholder="Search..." ng-model="searchMovieText" />
+  </div>
+</div>
+
   <div class="container">
   	<div class="row" ng-controller="movieCtrl">
-      <div class="col-md-4" ng-repeat="movie in movies track by $index" ng-click="addUserMovies($index)">
+      <div class="col-md-4" ng-repeat="movie in movies | filter:searchMovieText track by $index " ng-click="addUserMovies($index)">
         <div class="movie-container" >
           <div class="card item">
             <div class="pricebox">
@@ -98,7 +106,6 @@
       </div>
   	</div>
 
-  	<div ng-controller="movieCtrl"> great movie: {{ movie }} </div>
   </div>
 
 
