@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Movie app</title>
 </head>
-<body ng-app="movieApp">
+<body ng-app="movieApp" ng-controller="movieCtrl">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -23,9 +23,12 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 
-        <ul class="nav navbar-nav navbar-right nav-tabs">
+        <ul class="nav navbar-nav navbar-right nav-tabs" >
+        	<li><p type="" class="btn btn-outline-success"> Coins {{coins | currency}}
+          </p>
+          <p class="error-message">{{errorMsg}}</p></li>
           <li class="dropdown">
             <a href="#" class="view-cart" data-toggle="dropdown" role="button">Anguflix coins</a>
           </li>
@@ -37,7 +40,7 @@
   	<div class="page-header">
 	  	<h1>My Collection</h1>
   	</div>
-  	<div class="row" ng-controller="movieCtrl">
+  	<div class="row" >
       <div class="col-md-4" ng-repeat="movie in userMovies track by $index ">
       <!-- <div class="col-md-4" ng-repeat="movie in userMovies | orderBy {{searchResults}} track by $index "> -->
       <i class="fa fa-times-circle-o fa-3x" aria-hidden="true" ng-click="removeMovieMyCollection($index)"></i>
@@ -79,7 +82,7 @@
 </div>
 
   <div class="container">
-  	<div class="row" ng-controller="movieCtrl">
+  	<div class="row" >
       <div class="col-md-4" ng-repeat="movie in movies | filter:searchMovieText track by $index " ng-click="addUserMovies($index)">
         <div class="movie-container" >
           <div class="card item">

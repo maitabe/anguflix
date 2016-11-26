@@ -66,29 +66,57 @@ app.factory('movieService', function() {
 
 	userMovies = [];
 
+	var money = 50;
+	//sometimes is better to use an object when you have nested controllers
 
-	var addUserMovies = function(selectedMovie) {
-		//find the id of the movie selected
-		var result = userMovies.find(function(movie) {
-			//testing function(the anonymous func): will give me back the object(value) of the movie
-			return movie.id === selectedMovie.id;
-		});
-		//check if user collection has selected movie
-		if(result === undefined){
-			// not found in collection
-			userMovies.push(selectedMovie);
+	//rest price of movie from money
+	var isEnoughMoney = function(priceMovie) {
+		if(money >= priceMovie) {
+			money -= priceMovie;
+			return true;
+		}else{
+			return false;
 		}
 	};
 
-	var removeMovie = function(index) {
-		userMovies.splice(index, 1);
+	var getMoney = function(){
+		return money;
 	};
+
+	var addUserMovies = function(selectedMovie) {
+
+		if(isEnoughMoney(selectedMovie.price)) {
+				//there is money - add movie
+					//find the id of the movie selected
+				var result = userMovies.find(function(movie) {
+					//testing function(the anonymous func): will give me back the object(value) of the movie
+					return movie.id === selectedMovie.id;
+				});
+				//check if user collection has selected movie
+				if(result === undefined){
+					// not found in collection
+					userMovies.push(selectedMovie);
+				}
+				return true;
+			}
+			return false;
+	};
+
+	var removeMovie = function(index, selectedMovie) {
+		userMovies.splice(index, 1);
+
+		money += selectedMovie.price;
+
+	};
+
 
 	return {
 		allMovies:allMovies,
 		userMovies:userMovies,
 		addUserMovies:addUserMovies,
-		removeMovie:removeMovie
+		removeMovie:removeMovie,
+		money:money,
+		getMoney:getMoney
 	};
 
 });
