@@ -1,6 +1,11 @@
 
 app.factory('movieService', function() {
 
+
+
+	var STORAGE_ID = 'movie-app';
+	var TOTAL = 'total-money';
+
 	var allMovies = [
 		{
 			id:1,
@@ -69,10 +74,17 @@ app.factory('movieService', function() {
 	var money = 50;
 	//sometimes is better to use an object when you have nested controllers
 
+	//functions
+	var getFromLocalStorage = function() {
+		userMovies = JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+		money = JSON.parse(localStorage.getItem(TOTAL) || 0);
+	};
+
 	//rest price of movie from money
 	var isEnoughMoney = function(priceMovie) {
 		if(money >= priceMovie) {
 			money -= priceMovie;
+			saveToLocalStorage();
 			return true;
 		}else{
 			return false;
@@ -80,7 +92,13 @@ app.factory('movieService', function() {
 	};
 
 	var getMoney = function(){
+
 		return money;
+	};
+
+	var saveToLocalStorage = function() {
+		localStorage.setItem(STORAGE_ID, JSON.stringify(userMovies));
+		localStorage.setItem(TOTAL, JSON.stringify(money));
 	};
 
 	var addUserMovies = function(selectedMovie) {
@@ -96,6 +114,7 @@ app.factory('movieService', function() {
 				if(result === undefined){
 					// not found in collection
 					userMovies.push(selectedMovie);
+					saveToLocalStorage();
 				}
 				return true;
 			}
@@ -107,7 +126,11 @@ app.factory('movieService', function() {
 
 		money += selectedMovie.price;
 
+		saveToLocalStorage();
+
 	};
+
+	getFromLocalStorage();
 
 
 	return {
